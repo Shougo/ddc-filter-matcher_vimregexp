@@ -1,7 +1,6 @@
 # ddc-filter-matcher_vimregexp
 
-Vim regexp matcher for ddc.vim
-It is useful for "ddc-source-line".
+Vim regexp matcher for ddc.vim It is useful for "ddc-source-line".
 
 ## Required
 
