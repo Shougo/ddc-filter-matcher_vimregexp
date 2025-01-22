@@ -1,8 +1,11 @@
-import { type Item, type SourceOptions } from "jsr:@shougo/ddc-vim@~7.0.0/types";
-import { BaseFilter } from "jsr:@shougo/ddc-vim@~7.0.0/filter";
+import {
+  type Item,
+  type SourceOptions,
+} from "jsr:@shougo/ddc-vim@~9.1.0/types";
+import { BaseFilter } from "jsr:@shougo/ddc-vim@~9.1.0/filter";
 
 import type { Denops } from "jsr:@denops/core@~7.0.0";
-import * as fn from "jsr:@denops/std@~7.1.1/function";
+import * as fn from "jsr:@denops/std@~7.4.0/function";
 
 type Params = {
   maxMatchLength: number;
