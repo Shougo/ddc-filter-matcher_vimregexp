@@ -18,25 +18,25 @@ export class Filter extends BaseFilter<Params> {
   }): Promise<Item[]> {
     const maxMatchLength = args.filterParams.maxMatchLength;
 
-    let compareStr: string = maxMatchLength == 0
+    let compareStr: string = maxMatchLength === 0
       ? args.completeStr
       : args.completeStr.slice(0, maxMatchLength);
     if (args.sourceOptions.ignoreCase) {
       compareStr = compareStr.toLowerCase();
     }
 
-    const items = [];
+    const items: Item[] = [];
     for (const item of args.items) {
       const match = await fn.match(
         args.denops,
         args.sourceOptions.ignoreCase ? item.word.toLowerCase() : item.word,
         compareStr,
-      ) as number;
+      );
       if (match >= 0) {
         items.push(item);
       }
     }
-    return Promise.resolve(items);
+    return items;
   }
 
   override params(): Params {
