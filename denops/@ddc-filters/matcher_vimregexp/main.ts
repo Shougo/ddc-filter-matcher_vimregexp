@@ -28,18 +28,18 @@ export class Filter extends BaseFilter<Params> {
         : args.completeStr.slice(0, maxMatchLength),
     );
 
-    const items: Item[] = [];
-    for (const item of args.items) {
-      const match = await fn.match(
-        args.denops,
-        args.sourceOptions.ignoreCase ? item.word.toLowerCase() : item.word,
-        compareStr,
-      );
-      if (match >= 0) {
-        items.push(item);
-      }
-    }
-    return items;
+    const matches = await Promise.all(
+      args.items.map(async (item) => {
+        const match = await fn.match(
+          args.denops,
+          normalize(item.word),
+          compareStr,
+        );
+        return match >= 0 ? item : null;
+      }),
+    );
+
+    return matches.filter((item): item is Item => item !== null);
   }
 
   override params(): Params {
